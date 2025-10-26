@@ -1,0 +1,42 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<div class="landingImageGrid">
+  <!-- FIRST IMAGE -->
+  <img src="{% static 'images/landingimage0.png' %}" alt="" />
+  <!-- SECOND IMAGE -->
+  <figure class="landingImagePanelMiddle">
+    <img src="{% static 'images/landingimage1.png' %}" alt="" />
+    <figcaption class="landingImageText">
+      <div class="1">OUR FIRST DROP</div>
+      <div class="2">The First.</div>
+      <a href="#"> </a>
+    </figcaption>
+  </figure>
+  <!-- THIRD IMAGE -->
+  <img src="{% static 'images/landingimage2.png' %}" alt="" />
+</div>
+<!-- prettier-ignore -->
+<div class="productGridContainer">
+  <section class="productGrid">
+    {% if new_products %}
+    {% for product in new_products|slice:":7" %} 
+    {% with images=product.product_images %}
+    <figure class="listingFigure">
+      <div class="listingFigureImage">
+        {% if images %}
+        <img
+          src="{{ images.url }}"
+          alt="{{ product.title }}"
+          class="mainImage"
+        />
+        {% endif %}
+      </div>
+    </figure>
+    {% endwith %}{% endfor %} {% endif %}
+  </section>
+</div>
+{% endblock %}

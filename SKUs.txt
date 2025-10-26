@@ -1,0 +1,54 @@
+category, size, material, color
+e.g. 
+'PANT-3432-DENIM-BLK'
+'SHIRT-M-COTTON-GRN'
+
+
+
+category[
+    pants = PANT
+    shirts = SHIRT
+    shorts = SHORT
+]
+
+                top size[
+                    extra small = XS
+                    small = S
+                    medium = M
+                    large = L
+                    extra large = XL
+                ]
+
+bottom size[
+    "$$$$" where $ = 1 number
+    3030
+    3230
+    3430
+    363
+
+    or
+
+    30
+    32
+    34
+]
+
+                material[
+                    denim = DENIM
+                    cotton = COTTON
+                    polyester = POLY
+                    canvas = CANVAS
+
+]
+COLOR[
+    black = BLK
+    white = WHT
+    gray = GRA
+    Red = RED
+    Orange = ORA
+    yellow = YEL
+    Green = GRN
+    Blue = BLU
+    Pink = PIN
+    purple = PUR
+]

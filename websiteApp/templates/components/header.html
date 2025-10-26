@@ -1,0 +1,18 @@
+{% load static %}
+<header class="headerContainer">
+  <!-- header left group -->
+  <div class="headerLeft">
+    <a href="{% url 'index' %}" class="headerTitle">
+      <img src="{% static 'images/FRAYED-transparent.png' %}" alt="Home" />
+    </a>
+    <a href="#">NEW ARRIVALS</a>
+    <a href="#">DENIM</a>
+    <a href="#">SHIRTS</a>
+    <a href="#">TRACK YOUR ORDERS</a>
+  </div>
+  <!-- header right group -->
+  <div class="headerRight">
+    <img src="{% static 'images/cart.svg' %}" alt="Cart" />
+    <img src="{% static 'images/profile.svg' %}" alt="Profile" />
+  </div>
+</header>
