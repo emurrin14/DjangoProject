@@ -40,7 +40,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # creats tags with taggit
 
-
+    @property
     def image0(self):
         """ returns the first image associated with the product, or none """
         first_image = self.images.first()
