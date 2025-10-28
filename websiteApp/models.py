@@ -1,4 +1,5 @@
 from django.db import models
+from taggit.managers import TaggableManager
 from django.utils.text import slugify
 
 # Create your models here.
@@ -25,7 +26,6 @@ class Product(models.Model):
     sku = models.CharField(max_length=50, unique=True)
     stock = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=True)
-    new = models.BooleanField(default=True)
     fit_type = models.CharField(
         max_length=50,
         choices=[
@@ -38,7 +38,7 @@ class Product(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # creats tags with taggit
+    tags = TaggableManager()
 
     @property
     def image0(self):

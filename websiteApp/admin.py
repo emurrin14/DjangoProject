@@ -12,7 +12,7 @@ class ProductVariantInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'price', 'stock', 'available')
-    list_filter = ('category', 'available', 'fit_type', 'new')
+    list_filter = ('category', 'available', 'fit_type')
     search_fields = ('title', 'description', 'sku')
     prepopulated_fields = {'slug': ('title',)}
     inlines = [ProductImageInline, ProductVariantInline]
