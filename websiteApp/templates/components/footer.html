@@ -1,0 +1,34 @@
+{% load static %} {% block content %}
+<div class="landingPage"></div>
+<div class="footerContainer">
+  <div class="footerTop">
+    <a href="#" class="footerLink">SHOP</a>
+    <a href="#" class="footerLink">ABOUT US</a>
+    <a href="#" class="footerLink">CONTACT</a>
+    <a href="#" class="footerLink">TERMS OF SERVICE</a>
+    <a href="#" class="footerLink">PRIVACY POLICY</a>
+  </div>
+  <section class="footerMiddle">
+    <div class="footerMiddle0">
+      <img
+        src="{% static 'images\FRAYED-transparent.png' %}"
+        alt="FRAYED LOGO"
+      />
+      <form method="post">
+        <input
+          class="inputEmail"
+          name="email"
+          id="email"
+          type="email"
+          placeholder="Email"
+          required
+        />
+        <input class="inputSubscribe" type="submit" value="Subscribe" />
+      </form>
+    </div>
+    <div class="footerAbout"></div>
+    <div class="footerContact"></div>
+  </section>
+  <section class="footerBottom"></section>
+</div>
+{% endblock %}

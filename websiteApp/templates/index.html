@@ -22,8 +22,11 @@
 
 <!-- prettier-ignore -->
 <div class="productGridContainer">
-  <section class="shopAll">
-    FIRST DIV
+  <section class="productFirstDiv">
+    <h1>New Drops</h1>
+      <a href="#">
+        <button class="productFirstDivButton">Shop All</button>
+    </a>
   </section>
     {% if new_products %}
       {% for product in new_products|slice:":7" %}
@@ -49,5 +52,4 @@
           <div class="noProductsAvailable">No Products Available</div>
     {% endif %}
 </div>
-
-{% endblock %}
+{% include "components/footer.html" %} {% endblock %}

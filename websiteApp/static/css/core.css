@@ -5,6 +5,7 @@
   --hover: #72a7db;
   --accent: ;
   --text: #013328;
+  --textbefore: #005c48;
   --textopp: #2f181b;
   --gap: 1rem;
   --max-width: 600px;
@@ -55,7 +56,7 @@ img {
   height: 80px;
   background-color: var(--main);
   top: 0px;
-  padding: 0 1rem 0 1rem;
+  padding: 0;
   border-bottom: #ccc 0.1rem solid;
   width: 100%;
 }
@@ -126,14 +127,34 @@ img {
   width: 100%;
   margin: 2rem auto;
 }
-.shopAll {
+.productFirstDiv {
   background: #fff;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
   padding: 1rem;
+  gap: 1rem;
+}
+.productFirstDiv h1 {
+  font-size: 2rem;
+  margin-top: 40%;
+}
+.productFirstDivButton {
+  margin-top: 40%;
+  color: white;
+  background-color: var(--textbefore);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  transition: 0.2s all ease-in-out;
+}
+.productFirstDivButton:hover {
+  background-color: var(--text);
 }
 .productFigure {
   background: #f8f8f8;
@@ -180,3 +201,84 @@ img {
 .div7 { grid-area: 2 / 3 / 3 / 4; }
 .div8 { grid-area: 2 / 4 / 3 / 5; }
 */
+/* START FOOTER */
+.footerContainer {
+  width: 100%;
+  height: 400px;
+  background-color: var(--text);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.footerTop {
+  background-color: #7f7f7f;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 15%;
+}
+.footerTop .footerLink {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
+.footerTop .footerLink:hover {
+  text-decoration: underline;
+}
+.footerMiddle {
+  background-color: #007057;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 70%;
+}
+.footerMiddle .footerMiddle0 {
+  flex: 3.5;
+  display: flex;
+  flex-direction: column;
+  background-color: #72a7db;
+  color: white;
+}
+.footerMiddle .footerMiddle0 img {
+  width: 25%;
+  height: auto;
+}
+.footerMiddle .footerMiddle0 form {
+  display: flex;
+  width: 40%;
+  border: #757575 1px solid;
+  height: 3rem;
+}
+.footerMiddle .footerMiddle0 .inputEmail {
+  flex-grow: 1;
+  padding: 0;
+  border: none;
+}
+.footerMiddle .footerMiddle0 .inputSubscribe {
+  padding: 0;
+  border: none;
+  color: white;
+  background-color: var(--text);
+}
+.footerMiddle .footerAbout {
+  flex: 2;
+  display: flex;
+  background-color: bisque;
+}
+.footerMiddle .footerContact {
+  flex: 2;
+  display: flex;
+  background-color: darkslateblue;
+}
+.footerBottom {
+  background-color: #013328;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 15%;
+}
+/* END FOOTER */
