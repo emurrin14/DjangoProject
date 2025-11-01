@@ -21,6 +21,41 @@
 </div>
 
 <!-- prettier-ignore -->
+<<<<<<< HEAD
 {% include "components/productsNew.html" %}
 
 {% endblock %}
+=======
+<div class="productGridContainer">
+  <section class="productFirstDiv">
+    <h1>New Drops</h1>
+      <a href="#">
+        <button class="productFirstDivButton">Shop All</button>
+    </a>
+  </section>
+    {% if new_products %}
+      {% for product in new_products|slice:":7" %}
+        {% with images=product.images.all %}
+          <figure class="productFigure">
+            <div class="productFigureImage">
+              {% if images %}
+              <img
+                src="{{ product.image0.url }}"
+                alt="{{ product.title }}"
+                class="mainImage"
+              />
+              {% endif %}
+            </div>
+            <figcaption class="productFigureDetails">
+              <p class="productTitle">{{ product.title }}</p>
+              <p class="productPrice">${{ product.price }}</p>
+            </figcaption>
+          </figure>
+        {% endwith %}
+      {% endfor %}
+    {% else %}
+          <div class="noProductsAvailable">No Products Available</div>
+    {% endif %}
+</div>
+{% include "components/footer.html" %} {% endblock %}
+>>>>>>> f7769084073dc798f3c48b8a72906d36941d561b
