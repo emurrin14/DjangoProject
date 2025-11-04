@@ -19,6 +19,7 @@
       type="font/woff2"
       crossorigin
     />
+    <link rel="preload" href="{% static 'js/core.js' %}">
     <title>FRAYED</title>
   </head>
   <body>
@@ -26,4 +27,5 @@
 
     <main>{% block content %}{% endblock %}</main>
   </body>
+  <script src="{% static 'js/core.js' %}"></script>
 </html>

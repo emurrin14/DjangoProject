@@ -5,10 +5,15 @@
     <a href="{% url 'index' %}" class="headerTitle">
       <img src="{% static 'images/FRAYED-transparent.png' %}" alt="Home" />
     </a>
-    <a href="#">NEW ARRIVALS</a>
-    <a href="#">DENIM</a>
-    <a href="#">SHIRTS</a>
-    <a href="#">TRACK YOUR ORDERS</a>
+    <a class="headerLinkText" href="#">New Arrivals</a>
+    <a class="headerLinkText" href="#">Denim</a>
+    <a class="headerLinkText" href="#">Shirts</a>
+    <a class="headerLinkText" href="#">Track Orders</a>
+  </div>
+  <!-- header left hamburger menu (max-width: 768px) -->
+  <div class="headerHamburger">
+    <img id="hamburgerOpen" src="{% static 'images/HamburgerMenu.svg' %}" alt="Menu" />
+    <img id="hamburgerClose" src="{% static 'images/HamburgerClose.svg' %}" alt="Close">
   </div>
   <!-- header right group -->
   <div class="headerRight">
@@ -16,3 +21,10 @@
     <img src="{% static 'images/profile.svg' %}" alt="Profile" />
   </div>
 </header>
+<div id="hamburgerMenuOverlay" class="hamburgerMenuOverlay"></div>
+<div id="hamburgerMenuContainer" class="hamburgerMenuContainer">
+  <div>New Arrivals</div>
+  <div>Denim</div>
+  <div>Shirts</div>
+  <div>Track Orders</div>
+</div>
