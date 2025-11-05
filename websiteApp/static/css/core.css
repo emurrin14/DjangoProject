@@ -80,7 +80,34 @@ img {
   text-decoration: underline;
 }
 .headerRight {
+  display: flex;
+  flex-direction: row;
   gap: 1rem;
+}
+.headerRight #cartBtn {
+  cursor: pointer;
+}
+.headerRight #profileBtn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.profileDropdown {
+  position: absolute;
+  width: 6rem;
+  background-color: #013328;
+  color: white;
+  right: 1.5rem;
+  top: 80px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  border-radius: 8px;
+  min-width: 100px;
+}
+.profileDropdownActive {
+  display: flex !important;
 }
 .headerHamburger {
   display: none;
@@ -91,15 +118,17 @@ img {
 }
 #hamburgerOpen {
   display: block;
+  cursor: pointer;
 }
 .hamburgerActive {
-  display: none !important  ;
+  display: none !important;
 }
 #hamburgerClose {
   display: none;
 }
 .hamburgerCloseActive {
   display: block !important;
+  cursor: pointer;
 }
 @media (max-width: 900px) {
   .headerLeft a {
@@ -136,7 +165,6 @@ img {
   width: 100%;
   bottom: 0;
   z-index: 10;
-  transform: translateY(2px);
 }
 .hamburgerMenuContainer div {
   display: flex;
@@ -406,5 +434,55 @@ img {
   width: 100%;
   height: 15%;
   box-sizing: border-box;
+}
+.footerAccordianContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  background-color: var(--text);
+  z-index: 9;
+  transform: translateY(2px);
+}
+.footerAccordianContainer div {
+  color: white;
+  width: 75%;
+  border-bottom: 2px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0 1rem;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+}
+.footerAccordianSocials {
+  display: flex;
+  flex-direction: row;
+  justify-content: center !important;
+  align-items: center;
+  gap: 1rem;
+  flex: 1.5 !important;
+  width: 100%;
+}
+.footerBottomAccordian {
+  box-sizing: border-box;
+  background-color: #013328;
+  color: rgb(219, 219, 219);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  gap: 1rem;
+  bottom: 0;
+}
+@media (max-width: 768px) {
+  .footerContainer {
+    display: none;
+  }
 }
 /* END FOOTER */

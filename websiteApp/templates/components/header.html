@@ -2,7 +2,7 @@
 <header class="headerContainer">
   <!-- header left group -->
   <div class="headerLeft">
-    <a href="{% url 'index' %}" class="headerTitle">
+    <a href="#" class="headerTitle">
       <img src="{% static 'images/FRAYED-transparent.png' %}" alt="Home" />
     </a>
     <a class="headerLinkText" href="#">New Arrivals</a>
@@ -13,18 +13,24 @@
   <!-- header left hamburger menu (max-width: 768px) -->
   <div class="headerHamburger">
     <img id="hamburgerOpen" src="{% static 'images/HamburgerMenu.svg' %}" alt="Menu" />
-    <img id="hamburgerClose" src="{% static 'images/HamburgerClose.svg' %}" alt="Close">
   </div>
   <!-- header right group -->
   <div class="headerRight">
-    <img src="{% static 'images/cart.svg' %}" alt="Cart" />
-    <img src="{% static 'images/profile.svg' %}" alt="Profile" />
+    <img id="cartBtn" src="{% static 'images/cart.svg' %}" alt="Cart" />
+    <img id="profileBtn" src="{% static 'images/profile.svg' %}" alt="Profile" />
+  </div>
+  <div id="profileDropdown" class="profileDropdown">
+    <p>Profile</p>
+    <p>Log In</p>
   </div>
 </header>
 <div id="hamburgerMenuOverlay" class="hamburgerMenuOverlay"></div>
 <div id="hamburgerMenuContainer" class="hamburgerMenuContainer">
+  <div>
+    <img id="hamburgerClose" src="{% static 'images/HamburgerClose.svg' %}" alt="Close" />
+  </div>
   <div>New Arrivals</div>
   <div>Denim</div>
   <div>Shirts</div>
   <div>Track Orders</div>
-</div>
+</div
