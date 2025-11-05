@@ -39,6 +39,10 @@ profileBtn.addEventListener("click", () => {
 const infoBtn = document.getElementById("footerInformationBtn");
 const supportBtn = document.getElementById("footerSupportBtn");
 const socialsBtn = document.getElementById("footerSocialsBtn");
+//accordian menu toggles
+const InformationMenu = document.getElementById('');
+const SupportMenu = document.getElementById('');
+const SocialsMenu = document.getElementById('');
 
 infoBtn.addEventListener("click", () => {
     infoBtn.classList.toggle("footerInfoActive");
