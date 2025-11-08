@@ -1,0 +1,16 @@
+{% load static %}
+<div class="topbarContainer">
+  <div id="socialsContainer" class="socialsContainer"></div>
+  {% if sale and sale_start_iso and sale_end_iso %}
+  <div
+    id="saleCountdownContainer"
+    class="countdownContainer"
+    data-start-date="{{ sale_start_iso }}"
+    data-end-date="{{ sale_end_iso }}"
+  >
+    <p id="saleStatus"></p>
+    <span id="saleTimer"></span>
+  </div>
+  {% endif %}
+  <p class="topbar2">Extra div</p>
+</div>

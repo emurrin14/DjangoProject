@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, Size, Color, ProductVariant
+from .models import Category, Product, ProductImage, Size, Color, ProductVariant, Sale
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -34,3 +34,6 @@ class ColorAdmin(admin.ModelAdmin):
 class ProductVariantAdmin(admin.ModelAdmin):
     list_display = ('product', 'size', 'color', 'stock')
 
+@admin.register(Sale)
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ('start_date', 'end_date', 'is_active')

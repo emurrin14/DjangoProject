@@ -1,6 +1,7 @@
 from django.db import models
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
+from django.utils.timezone import now
 
 # Create your models here.
 class Category(models.Model):
@@ -94,3 +95,23 @@ class ProductVariant(models.Model):
     size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True)
     color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True, blank=True)
     stock = models.PositiveIntegerField(default=0)
+
+class Sale(models.Model):
+    name = models.CharField(max_length=100)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.name} (Active: {self.is_active})"
+    @property
+    def is_currently_active(self):
+        """return true if sale is active based on real time"""
+        current_time = now()
+        if not self.is_active:
+            return False
+        if self.start_date and current_time < self.start_date:
+            return False
+        if self.end_date and current_time > self.end_date:
+            return False
+        return True

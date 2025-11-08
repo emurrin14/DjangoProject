@@ -1,6 +1,34 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-{% block title  %}Product-Page{% endblock %}
+{% block title %}Product-Page{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/productStyle.css' %}" />
+{% endblock %}
 {% block content %}
+    <div class="gridContainer">
+        <div class="productImageGridContainer">
+            {% for image in product.images.all %}
+            <div class="imageContainer">
+                <img src="{{ image.image.url }}" alt="{{ product.title }}">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="productDetailsContainer">
+            <div class="productTags">
+                {% for tag in product.tags.all %}
+                    <p>{{ tag.name }}</p>
+                {% endfor %}
+            </div>
+            <div class="productInformation">
+                <div class="productTitle">{{ product.title }}</div>
+                <div class="productPrice">${{ product.price }}</div>
+            </div>
+            <div class="productVariants">
 
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<script src="{ static 'js/product.js' }"></script>
 {% endblock %}

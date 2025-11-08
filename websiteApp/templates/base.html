@@ -19,13 +19,17 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="preload" href="{% static 'js/core.js' %}">
+    <link rel="preload" as="script" href="{% static 'js/core.js' %}">
     <title>FRAYED</title>
+    {% block extra_head %}{% endblock %}
   </head>
   <body>
+    {% include 'components/topbar.html' %}
     {% include "components/header.html" %}
 
     <main>{% block content %}{% endblock %}</main>
+    {% include "components/footer.html" %}
   </body>
   <script src="{% static 'js/core.js' %}"></script>
+  <script src="{% static 'js/topbar.js' %}" ></script>
 </html>
