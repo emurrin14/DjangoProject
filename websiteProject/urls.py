@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('product/<slug:slug>/', views.product, name='product'),
+    path('add_to_cart', views.add_to_cart, name='add_to_cart'),
 ]
 
 if settings.DEBUG:

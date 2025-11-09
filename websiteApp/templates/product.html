@@ -24,11 +24,25 @@
                 <div class="productPrice">${{ product.price }}</div>
             </div>
             <div class="productVariants">
-
+                {% for variant in product.variants.all %}
+                  {% if variant.size %}
+                    <div class="productVariantSizes">
+                        <button
+                          type="button"
+                          class="productSizeButtons"
+                          data-size="{{ variant.size }}"
+                          data-variant-id="{{ variant.id }}"
+                          >
+                            {{ variant.size }}
+                        </button>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                <input type="hidden" id="selectedVariantId" value="">      
+                <button id="addToCartBtn" class="add-to-cart-btn" disabled>Add to Cart</button>   
+                <div id="cartStatus"></div>
             </div>
         </div>
     </div>
 {% endblock %}
-{% block scripts %}
-<script src="{ static 'js/product.js' }"></script>
-{% endblock %}
+{% block scripts %}<script src="{ static 'js/product.js' }"></script>{% endblock %}
