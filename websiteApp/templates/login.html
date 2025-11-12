@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% load static %}
+  <title>Login or Sign Up</title>
+  <link rel="stylesheet" href="{% static 'css/LoginSignup.css' %}">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+  <div class="LoginContainer">
+    <img src="{% static 'images/FRAYED-transparent.png' %}" alt="Frayed" class="LoginLogo">
+    <h1 class="LoginLogin">Login</h1>
+    <form id="LoginForm" method="post">
+      {% csrf_token %}
+      <div class="LoginEmail">
+        <p>Email</p>
+          <input id="LoginEmailInput" type="email" name="username" placeholder="Type Your Email" required>
+      </div>
+      <div class="LoginPassword">
+        <p>Password</p>
+          <input id="LoginPasswordInput" type="password" name="password" placeholder="Type Your Password" required>
+      </div>
+    </form>
+      <button form="LoginForm" type="submit">Login</button>
+  </div>
+</body>
+</html>

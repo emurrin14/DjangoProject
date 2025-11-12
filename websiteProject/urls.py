@@ -25,6 +25,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('product/<slug:slug>/', views.product, name='product'),
     path('add_to_cart', views.add_to_cart, name='add_to_cart'),
+    path('signup/', views.signup_view, name='signup'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
 ]
 
 if settings.DEBUG:

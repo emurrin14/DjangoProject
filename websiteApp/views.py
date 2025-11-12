@@ -1,9 +1,13 @@
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import localtime
 from .models import Product, Category, Sale, ProductVariant
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login, logout
+from .forms import CustomLoginForm, CustomUserCreationForm
 import json
+
+
 # Create your views here.
 def index(request):
     new_products = Product.objects.filter(tags__name__iexact="New").distinct()
@@ -72,3 +76,33 @@ def add_to_cart(request):
             return JsonResponse({'success': False, 'message': 'Variant not found'}, status=404)
 
     return JsonResponse({'success': False, 'message': 'Invalid request'}, status=400)
+
+
+
+def signup_view(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("index")
+    else:
+        form = CustomUserCreationForm()
+    return render(request, "signup.html", {"form": form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = CustomLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("index")
+    else:
+        form = CustomLoginForm()
+    return render(request, "login.html", {"form": form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("index")

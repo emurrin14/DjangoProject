@@ -1,0 +1,329 @@
+[
+{
+  "model": "websiteApp.category",
+  "pk": 1,
+  "fields": {
+    "name": "Pants",
+    "slug": "pants"
+  }
+},
+{
+  "model": "websiteApp.category",
+  "pk": 2,
+  "fields": {
+    "name": "New",
+    "slug": "new"
+  }
+},
+{
+  "model": "websiteApp.category",
+  "pk": 3,
+  "fields": {
+    "name": "Jorts",
+    "slug": "jorts"
+  }
+},
+{
+  "model": "websiteApp.product",
+  "pk": 1,
+  "fields": {
+    "title": "SouthPole Pants",
+    "slug": "southpole-pants",
+    "description": "super sic southple pants",
+    "category": 1,
+    "price": "25.00",
+    "sku": "PANT-2930-DENIM-BLK",
+    "stock": 1,
+    "IsInStock": true,
+    "fit_type": "baggy",
+    "created_at": "2025-10-26T19:07:27.798Z",
+    "updated_at": "2025-10-28T21:26:59.463Z"
+  }
+},
+{
+  "model": "websiteApp.product",
+  "pk": 2,
+  "fields": {
+    "title": "SouthPole Jorts",
+    "slug": "southpole-jorts",
+    "description": "Super sick southpoekdfjsdfkl;dfsk;dkls; descri[tiojo",
+    "category": 3,
+    "price": "20.00",
+    "sku": "SHORT-34-DENIM-BLU",
+    "stock": 2,
+    "IsInStock": true,
+    "fit_type": "baggy",
+    "created_at": "2025-10-27T21:59:16.344Z",
+    "updated_at": "2025-11-08T22:46:28.872Z"
+  }
+},
+{
+  "model": "websiteApp.product",
+  "pk": 3,
+  "fields": {
+    "title": "Risk Jorts",
+    "slug": "risk-jorts",
+    "description": "super sick risk jorts",
+    "category": 3,
+    "price": "30.00",
+    "sku": "SHORT-30-DENIM-BLU",
+    "stock": 4,
+    "IsInStock": true,
+    "fit_type": "baggy",
+    "created_at": "2025-10-27T22:01:01.538Z",
+    "updated_at": "2025-11-02T23:02:36.361Z"
+  }
+},
+{
+  "model": "websiteApp.product",
+  "pk": 4,
+  "fields": {
+    "title": "Nike Track Pants",
+    "slug": "track-pants",
+    "description": "sdgsdfsdfs",
+    "category": 1,
+    "price": "45.00",
+    "sku": "PANTS-M-NYLON-BLK",
+    "stock": 2,
+    "IsInStock": true,
+    "fit_type": "regular",
+    "created_at": "2025-10-27T22:02:22.886Z",
+    "updated_at": "2025-11-02T23:02:30.917Z"
+  }
+},
+{
+  "model": "websiteApp.product",
+  "pk": 5,
+  "fields": {
+    "title": "Wrangler Jorts",
+    "slug": "wrangler-jorts",
+    "description": "sick wrangler jorts",
+    "category": 3,
+    "price": "15.00",
+    "sku": "SHORT-29-DENIM-BLU",
+    "stock": 0,
+    "IsInStock": false,
+    "fit_type": "",
+    "created_at": "2025-10-27T22:03:21.039Z",
+    "updated_at": "2025-11-08T22:46:25.652Z"
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "image": "product_images/sppants.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "image": "product_images/sppants2.jpg",
+    "order": 1
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "image": "product_images/sppants3.jpg",
+    "order": 2
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 4,
+  "fields": {
+    "product": 2,
+    "image": "product_images/sp.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "image": "product_images/sp2.jpg",
+    "order": 1
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "image": "product_images/sp3.jpg",
+    "order": 2
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 7,
+  "fields": {
+    "product": 3,
+    "image": "product_images/risk.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "image": "product_images/risk2.jpg",
+    "order": 1
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "image": "product_images/risk3.jpg",
+    "order": 2
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 10,
+  "fields": {
+    "product": 4,
+    "image": "product_images/tracks.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 11,
+  "fields": {
+    "product": 4,
+    "image": "product_images/tracks2.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 12,
+  "fields": {
+    "product": 5,
+    "image": "product_images/wrangler.jpg",
+    "order": 0
+  }
+},
+{
+  "model": "websiteApp.productimage",
+  "pk": 13,
+  "fields": {
+    "product": 5,
+    "image": "product_images/wrangler2.jpg",
+    "order": 1
+  }
+},
+{
+  "model": "websiteApp.size",
+  "pk": 1,
+  "fields": {
+    "name": "29x30"
+  }
+},
+{
+  "model": "websiteApp.size",
+  "pk": 2,
+  "fields": {
+    "name": "30"
+  }
+},
+{
+  "model": "websiteApp.size",
+  "pk": 3,
+  "fields": {
+    "name": "Medium"
+  }
+},
+{
+  "model": "websiteApp.size",
+  "pk": 4,
+  "fields": {
+    "name": "29"
+  }
+},
+{
+  "model": "websiteApp.color",
+  "pk": 2,
+  "fields": {
+    "name": "Black"
+  }
+},
+{
+  "model": "websiteApp.color",
+  "pk": 3,
+  "fields": {
+    "name": "Blue"
+  }
+},
+{
+  "model": "websiteApp.productvariant",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "size": 1,
+    "color": 2,
+    "stock": 1
+  }
+},
+{
+  "model": "websiteApp.productvariant",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "size": 2,
+    "color": 3,
+    "stock": 2
+  }
+},
+{
+  "model": "websiteApp.productvariant",
+  "pk": 3,
+  "fields": {
+    "product": 2,
+    "size": 2,
+    "color": 3,
+    "stock": 4
+  }
+},
+{
+  "model": "websiteApp.productvariant",
+  "pk": 4,
+  "fields": {
+    "product": 4,
+    "size": 3,
+    "color": 2,
+    "stock": 2
+  }
+},
+{
+  "model": "websiteApp.productvariant",
+  "pk": 5,
+  "fields": {
+    "product": 5,
+    "size": 4,
+    "color": 3,
+    "stock": 2
+  }
+},
+{
+  "model": "websiteApp.sale",
+  "pk": 1,
+  "fields": {
+    "name": "Example Sale",
+    "start_date": "2025-11-08T18:56:45Z",
+    "end_date": "2026-01-01T00:00:00Z",
+    "is_active": true
+  }
+}

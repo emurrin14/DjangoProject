@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, Size, Color, ProductVariant, Sale
+from django.contrib.auth.admin import UserAdmin
+from .models import Category, Product, ProductImage, Size, Color, ProductVariant, Sale, CustomUser
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -37,3 +38,22 @@ class ProductVariantAdmin(admin.ModelAdmin):
 @admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):
     list_display = ('start_date', 'end_date', 'is_active')
+
+
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    list_display = ('email', 'is_staff', 'is_active')
+    ordering = ('email',)
+    search_fields = ('email',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login',)}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'is_active', 'is_staff')}
+        ),
+    )
