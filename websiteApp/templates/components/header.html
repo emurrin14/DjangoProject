@@ -16,7 +16,9 @@
   </div>
   <!-- header right group -->
   <div class="headerRight">
-    <img id="cartBtn" src="{% static 'images/cart.svg' %}" alt="Cart" />
+    <a href="{% url 'cart' %}">
+      <img id="cartBtn" src="{% static 'images/cart.svg' %}" alt="Cart" />
+    </a>
     <img id="profileBtn" src="{% static 'images/profile.svg' %}" alt="Profile" />
   </div>
   <div id="profileDropdown" class="profileDropdown">

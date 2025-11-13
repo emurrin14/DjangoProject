@@ -1,11 +1,12 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import localtime
-from .models import Product, Category, Sale, ProductVariant
+from .models import Product, Category, Sale, ProductVariant, Cart, CartItem, Size
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomLoginForm, CustomUserCreationForm
 import json
+from django.views.decorators.http import require_POST
 
 
 # Create your views here.
@@ -62,21 +63,6 @@ def product(request, slug):
     }
     return render(request, 'product.html', context)
 
-def add_to_cart(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        variant_id = data.get('variant_id')
-        quantity = data.get('quantity', 1)
-
-        try:
-            variant = ProductVariant.objects.get(id=variant_id)
-            #add to cart logic
-            return JsonResponse({'success': True, 'message': f'{variant.size} Added To Cart!'})
-        except ProductVariant.DoesNotExist:
-            return JsonResponse({'success': False, 'message': 'Variant not found'}, status=404)
-
-    return JsonResponse({'success': False, 'message': 'Invalid request'}, status=400)
-
 
 
 def signup_view(request):
@@ -98,11 +84,77 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect("index")
+        else:
+            
+            return render(request, "login.html", {"form": form})
     else:
         form = CustomLoginForm()
+
     return render(request, "login.html", {"form": form})
 
 
 def logout_view(request):
     logout(request)
     return redirect("index")
+
+def cart(request):
+    cart = get_cart(request)
+    items = cart.items.all()
+    total = cart.total_price()
+
+    return render(request, 'cart.html', {
+        "cart": cart,
+        "items": items,
+        "total": total,
+    })
+
+def get_cart(request):
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+    else:
+        session_key = request.session.session_key
+        if not session_key:
+            request.session.create()
+            session_key = request.session.session_key
+        cart, created = Cart.objects.get_or_create(session_key=session_key)
+    return cart
+
+
+@require_POST
+def add_to_cart(request, product_id):
+    cart = get_cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    
+    variant_id = request.POST.get("variant_id")
+    variant = get_object_or_404(Variant, id=variant_id) if variant_id else None
+
+    cart_item, created = CartItem.objects.get_or_create(
+        cart=cart,
+        product=product,
+        variant=variant,
+        defaults={"quantity": 1}
+    )
+
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return JsonResponse({"success": True, "quantity": cart_item.quantity})
+
+
+def subtract_from_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+
+    if cart_item.quantity > 1:
+        cart_item.quantity -+ 1
+        cart_item.save()
+    
+    else:
+        cart_item.delete()
+    
+    return redirect("cart.html")
+
+def remove_from_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    cart_item.delete()
+    return redirect("cart.html")

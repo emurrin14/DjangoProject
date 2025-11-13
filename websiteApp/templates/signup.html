@@ -9,11 +9,29 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
-    <h2>Sign Up</h2>
-    <form method="post">
+  <div class="LoginContainer">
+    <img src="{% static 'images/FRAYED-transparent.png' %}" alt="Frayed" class="LoginLogo">
+    <h1 class="LoginLogin">SignUp</h1>
+    <form id="SignUpForm" method="post">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Sign Up</button>
+      <div class="LoginEmail">
+        <p>Email</p>
+          <input class="SignUpEmailInput" id="LoginEmailInput" type="email" name="email" placeholder="Type Your Email" required>
+      </div>
+      <div class="LoginPassword">
+        <p>Password</p>
+        <input class="SignUpPasswordInput" id="LoginPasswordInput" type="password" name="password1" placeholder="Type Your Password" required>
+      </div>
+      <div class="ConfirmPassword">
+        <p>Confirm Password</p>
+        <input class="SignUpPassword2Input" id="ConfirmPasswordInput" type="password" name="password2" placeholder="Confirm Your Password" required>
+      </div>
     </form>
+      <div id="errorDiv">
+        
+      </div>
+    <button form="SignUpForm" type="submit">Login</button>
+  </div>
 </body>
+<script src="{% static 'js/LoginSignupScript.js' %}"></script>
 </html>

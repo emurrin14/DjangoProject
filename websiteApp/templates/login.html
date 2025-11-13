@@ -23,7 +23,20 @@
           <input id="LoginPasswordInput" type="password" name="password" placeholder="Type Your Password" required>
       </div>
     </form>
+    <div class="ForgotPassword">
+      <a href="#">Forgot Your Password?</a>
+    </div>
+      {% if form.non_field_errors %}
+      <div id="errorDiv">
+        {{ form.non_field_errors.0 }}
+      </div>
+      {% endif %}
       <button form="LoginForm" type="submit">Login</button>
+    <div class="SignUpLink">
+      <p>Don't have an account?</p>
+      <a href="{% url 'signup' %}">Sign Up</a>
+    </div>
   </div>
 </body>
+<script src="{% static 'js/LoginSignupScript.js' %}"></script>
 </html>

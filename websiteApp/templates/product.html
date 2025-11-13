@@ -24,23 +24,29 @@
                 <div class="productPrice">${{ product.price }}</div>
             </div>
             <div class="productVariants">
-                {% for variant in product.variants.all %}
-                  {% if variant.size %}
-                    <div class="productVariantSizes">
-                        <button
-                          type="button"
-                          class="productSizeButtons"
-                          data-size="{{ variant.size }}"
-                          data-variant-id="{{ variant.id }}"
-                          >
-                            {{ variant.size }}
-                        </button>
+                <form method="post" action="{% url 'add_to_cart' product.id %}" id="addToCartForm">
+                    {% csrf_token %}
+                    <div class="productVariants">
+                        {% for variant in product.variants.all %}
+                            {% if variant.size %}
+                                <div class="productVariantSizes">
+                                    <button
+                                      type="button"
+                                      class="productSizeButtons"
+                                      data-size="{{ variant.size }}"
+                                      data-variant-id="{{ variant.id }}">
+                                        {{ variant.size }}
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <input type="hidden" name="variant_id" id="selectedVariantId" value="">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" name="quantity" value="1" min="1">
+                        <button id="addToCartBtn" type="submit" class="add-to-cart-btn" disabled>Add to Cart</button>
                     </div>
-                  {% endif %}
-                {% endfor %}
-                <input type="hidden" id="selectedVariantId" value="">      
-                <button id="addToCartBtn" class="add-to-cart-btn" disabled>Add to Cart</button>   
-                <div id="cartStatus"></div>
+                </form>
+                <div id="cartStatus"></div>                
             </div>
         </div>
     </div>

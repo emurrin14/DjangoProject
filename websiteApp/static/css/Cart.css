@@ -1,0 +1,52 @@
+:root {
+  --main: #ffffff;
+  --bg: #222222;
+  --card: #ffffff;
+  --hover: #72a7db;
+  --accent: ;
+  --text: #013328;
+  --textbefore: #005c48;
+  --textopp: #2f181b;
+  --gap: 1rem;
+  --max-width: 600px;
+  --border: 1px solid #ccc;
+}
+@font-face {
+  font-family: "BCsklonar";
+  src: url("../Fonts/bc-sklonar-light.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "BCsklonar";
+  src: url("../Fonts/bc-sklonar-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+img {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+* {
+  margin: 0px;
+  font-family: "BCsklonar", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  box-sizing: border-box;
+}
+.CartContainer {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,64 +1,61 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const sizeButtons = document.querySelectorAll(".productSizeButtons");
-  const hiddenInput = document.querySelector("#selectedVariantId");
-  const addToCartBtn = document.querySelector("#addToCartBtn");
-  const statusDiv = document.querySelector("#cartStatus");
-
-  // Handle size selection
-  sizeButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      // Remove active highlight from others
-      sizeButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      // Store selected variant ID
-      const variantId = btn.dataset.variantId;
-      hiddenInput.value = variantId;
-      addToCartBtn.disabled = false;
+document.addEventListener("DOMContentLoaded", function () {
+    const sizeButtons = document.querySelectorAll(".productSizeButtons");
+    const selectedVariantInput = document.getElementById("selectedVariantId");
+    const addToCartForm = document.getElementById("addToCartForm");
+    const addToCartBtn = document.getElementById("addToCartBtn");
+    const cartStatus = document.getElementById("cartStatus");
+  
+    // --- SIZE SELECTION ---
+    sizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active styling from all buttons
+        sizeButtons.forEach((btn) => btn.classList.remove("active-size"));
+        // Add active styling to the clicked one
+        button.classList.add("active-size");
+  
+        // Set selected variant ID
+        const variantId = button.dataset.variantId;
+        selectedVariantInput.value = variantId;
+  
+        // Enable the "Add to Cart" button
+        addToCartBtn.disabled = false;
+      });
+    });
+  
+    // --- FORM SUBMIT (AJAX) ---
+    addToCartForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // prevent normal form submission
+  
+      const formData = new FormData(addToCartForm);
+      const url = addToCartForm.action;
+  
+      // Get CSRF token
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+        },
+        body: formData,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            cartStatus.innerHTML = `<p style="color: green;">Added to cart! Quantity: ${data.quantity}</p>`;
+          } else {
+            cartStatus.innerHTML = `<p style="color: red;">Error adding to cart.</p>`;
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          cartStatus.innerHTML = `<p style="color: red;">Something went wrong.</p>`;
+        });
     });
   });
-
-  // Handle AJAX Add to Cart
-  addToCartBtn.addEventListener("click", () => {
-    const variantId = hiddenInput.value;
-    if (!variantId) return;
-
-    fetch("{% url 'add_to_cart' %}", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": getCookie("csrftoken"),  // Django CSRF helper below
-      },
-      body: JSON.stringify({
-        variant_id: variantId,
-        quantity: 1,
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      statusDiv.textContent = data.message || "Added to cart!";
-      statusDiv.style.color = "green";
-    })
-    .catch(err => {
-      statusDiv.textContent = "Error adding to cart.";
-      statusDiv.style.color = "red";
-      console.error(err);
-    });
-  });
-
-  // Helper to get CSRF token from cookies
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let cookie of cookies) {
-        cookie = cookie.trim();
-        if (cookie.startsWith(name + "=")) {
-          cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-});
+  

@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-firebase-djangoproject-1762955648735.cluster-lqzyk3r5hzdcaqv6zwm7wv6pwa.cloudworkstations.dev",
+]
 
 # Application definition
 
