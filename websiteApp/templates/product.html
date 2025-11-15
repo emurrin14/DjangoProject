@@ -27,28 +27,32 @@
                 <form method="post" action="{% url 'add_to_cart' product.id %}" id="addToCartForm">
                     {% csrf_token %}
                     <div class="productVariants">
-                        {% for variant in product.variants.all %}
-                            {% if variant.size %}
-                                <div class="productVariantSizes">
-                                    <button
-                                      type="button"
-                                      class="productSizeButtons"
-                                      data-size="{{ variant.size }}"
-                                      data-variant-id="{{ variant.id }}">
-                                        {{ variant.size }}
-                                    </button>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                        <input type="hidden" name="variant_id" id="selectedVariantId" value="">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" name="quantity" value="1" min="1">
-                        <button id="addToCartBtn" type="submit" class="add-to-cart-btn" disabled>Add to Cart</button>
+                      {% for variant in product.variants.all %}
+                        {% if variant.size %}
+                          <div class="productVariantSizes">
+                            <button
+                              type="button"
+                              class="productSizeButtons"
+                              data-variant-id="{{ variant.id }}">
+                                {{ variant.size }}
+                            </button>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                  
+                      <!-- Hidden input for selected variant -->
+                      <input type="hidden" name="variant_id" id="selectedVariantId" value="">
+                  
+                      <label for="quantity">Quantity:</label>
+                      <input type="number" name="quantity" value="1" min="1">
+                  
+                      <!-- Disabled until a variant is selected -->
+                      <button id="addToCartBtn" type="submit" class="add-to-cart-btn" disabled>Add to Cart</button>
                     </div>
-                </form>
-                <div id="cartStatus"></div>                
+                  </form>
+                  <div id="cartStatus"></div>                           
             </div>
         </div>
     </div>
 {% endblock %}
-{% block scripts %}<script src="{ static 'js/product.js' }"></script>{% endblock %}
+{% block scripts %}<script src="{% static 'js/product.js' %}"></script>{% endblock %}

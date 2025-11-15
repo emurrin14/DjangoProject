@@ -140,25 +140,28 @@ class Cart(models.Model):
     def total_price(self):
         return sum(item.subtotal() for item in self.items.all())
 
+    def total_items(self):
+        return sum(item.quantity for item in self.items.all())
+
 class CartItem(models.Model):
-    cart = models.ForeignKey(
-        Cart,
-        related_name="items",
-        on_delete=models.CASCADE
-    )
+    cart = models.ForeignKey(Cart, related_name="items", on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variant = models.ForeignKey(ProductVariant, null=True, blank=True, on_delete=models.SET_NULL)
     quantity = models.PositiveIntegerField(default=1)
     added_at = models.DateTimeField(auto_now_add=True)
-    size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
-        unique_together = ("cart", "product", "size")
+        unique_together = ("cart", "variant")
+
+    def subtotal(self):
+        if self.variant:
+            return self.variant.product.price * self.quantity
+        else:
+            return self.product.price * self.quantity
+
 
     def __str__(self):
         return f"{self.quantity} x {self.product.title} in Cart {self.cart.pk}"
-
-    def subtotal(self):
-        return self.product.price * self.quantity
 
 
     

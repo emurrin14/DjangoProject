@@ -1,21 +1,137 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Homepage{% endblock %}
+{% block title %}Cart{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/Cart.css' %}" />
 {% endblock %}
+
 {% block content %}
+<h1 class="YourCart">Your Cart ({{ cart.total_items }} items):</h1>
+{%if items%}
+<div class="CartInfoTopbar">
+  <p>Item</p>
+  <p>Price</p>
+  <p>Quantity</p>
+  <p>Total</p>
+</div>
 <div class="CartContainer">
-  {% if item in items %}
-    {% for item in items %}
-        <div class="itemContainer">
-            {{ item.product.title }}
+  {%for item in items%}
+    <div class="ItemContainer">
+      <div class="ItemDetails">
+          <div class="ItemImage">
+            <img src="{{ item.product.image0.url  }}" alt="{{ item.product.title }}">
+          </div>
+          <div class="ItemVariantDetails">
+            <p>{{ item.product.title }}</p>
+            {%if item.size%}
+              <p>Size: {{  item.size.name }}</p>
+            {%endif%}
+
+            {%if item.variant.color%}
+              <p>Color: {{  item.variant.color.name }}</p>
+            {%endif%}
+            
+            {%if item.product.IsInStock%}
+              <p class="ItemVariant">In Stock</p>
+            {%else%}
+              <p class="ItemVariant">Not In Stock</p>
+            {%endif%}
+          </div>
+      </div>
+      <div class="ItemPrice">
+        {{ item.product.price }}
+      </div>
+      <div class="ItemQuantity">
+        {{ item.quantity }}
+      </div>
+      <div class="ItemTotal">
+        {{ item.subtotal }}
+      </div>
+    </div>
+  {%endfor%}
+</div>
+{%else%}
+  <div>Your Cart Is Empty.</div>
+{%endif%}
+{%endblock%}
+  {% comment %} <h1 class="YourCart">Your Cart ({{ cart.total_items }} items):</h1>
+<div class="CartInfoTopbar">
+  <p>Item</p>
+  <p>Price</p>
+  <p>Quantity</p>
+  <p>Total</p>
+</div>
+<div class="CartInfoTopbarBorder"></div>
+<div class="CartContainer">
+  {%if items%}
+    {%for item in items%}
+      <div class="ItemContainer">
+        <div>
+          <div class="ItemImage">
+            <img src="{{ item.product.image0.url  }}" alt="{{ item.product.title }}">
+          </div>
+          <div class="ItemDetails">
+            <div class="ItemTitle">{{ item.product.title }}</div>
+            {% if item.size %}
+              <div class="ItemVariant">Size: {{ item.size.name }}</div>
+            {%endif%}
+            {%if item.variant.color%}
+              <div class="ItemVariant">Color: {{ item.variant.color.name }}</div>
+            {%endif%}
+              {%if item.product.IsInStock%}
+                <div class="ItemVariant">In Stock</div>
+              {%else%}
+                <div class="ItemVariant">Not In Stock</div>
+              {%endif%}
+          </div>
         </div>
+        <div>
+          <div class="ItemPrice">${{ item.product.price }}</div>
+        </div>
+        <div>
+          <div class="ItemQuantity">Quantity: {{ item.quantity }}</div>
+        </div>
+        <div class="ItemTotal">Total: {{ item.subtotal }}</div>
+      </div>
+      <div class="BorderDiv"></div>
+    {%endfor%}
+
+  {%else%}
+    <div>Your cart is empty.</div>
+  {%endif%}
+{%endblock%} {% endcomment %}
+
+
+
+  {% comment %} {% if items %}
+    {% for item in items %}
+      <div class="itemContainer">
+        <div class="itemTitle">{{ item.product.title }}</div>
+        {% if item.size %}
+          <div class="itemVariant">Size: {{ item.size.name }}</div>
+        {% endif %}
+        {% if item.variant.color %}
+          <div class="itemVariant">Color: {{ item.variant.color.name }}</div>
+        {% endif %}
+        <div class="itemQuantity">Quantity: {{ item.quantity }}</div>
+        <div class="itemSubtotal">Subtotal: ${{ item.subtotal }}</div>
+
+        <form method="post" action="{% url 'remove_from_cart' item.id %}">
+          {% csrf_token %}
+          <button type="submit">Remove</button>
+        </form>
+      </div>
     {% endfor %}
 
+    <div class="cartTotal">
+      <strong>Total: ${{ cart.total_price }}</strong>
+    </div>
   {% else %}
     <div>Nothing in Cart</div>
   {% endif %}
 </div>
+{% endblock %} {% endcomment %}
+
+{% block scripts %}
+<script src="{% static 'js/Cart.js' %}"></script>
 {% endblock %}
-{% block scripts %}<script src="{% static 'js/Cart.js' %}"></script>{% endblock %}

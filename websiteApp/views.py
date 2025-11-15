@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import localtime
 from .models import Product, Category, Sale, ProductVariant, Cart, CartItem, Size
@@ -120,13 +120,18 @@ def get_cart(request):
     return cart
 
 
+from django.http import JsonResponse, HttpResponseBadRequest
+
 @require_POST
 def add_to_cart(request, product_id):
     cart = get_cart(request)
     product = get_object_or_404(Product, id=product_id)
     
     variant_id = request.POST.get("variant_id")
-    variant = get_object_or_404(Variant, id=variant_id) if variant_id else None
+    if not variant_id:
+        return HttpResponseBadRequest("Variant must be selected.")
+
+    variant = get_object_or_404(ProductVariant, id=variant_id)
 
     cart_item, created = CartItem.objects.get_or_create(
         cart=cart,
@@ -142,11 +147,12 @@ def add_to_cart(request, product_id):
     return JsonResponse({"success": True, "quantity": cart_item.quantity})
 
 
+
 def subtract_from_cart(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id)
 
     if cart_item.quantity > 1:
-        cart_item.quantity -+ 1
+        cart_item.quantity -= 1
         cart_item.save()
     
     else:
