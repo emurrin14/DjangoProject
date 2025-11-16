@@ -21,21 +21,27 @@
           <div class="ItemImage">
             <img src="{{ item.product.image0.url  }}" alt="{{ item.product.title }}">
           </div>
-          <div class="ItemVariantDetails">
-            <p>{{ item.product.title }}</p>
-            {%if item.size%}
-              <p>Size: {{  item.size.name }}</p>
-            {%endif%}
+          <div class="ItemVariantDetailsContainer">
+            <div class="ItemVariantDetails">
+              <p>{{ item.product.title }}</p>
+              {%if item.size%}
+                <p>Size: {{  item.size.name }}</p>
+              {%endif%}
 
-            {%if item.variant.color%}
-              <p>Color: {{  item.variant.color.name }}</p>
-            {%endif%}
-            
-            {%if item.product.IsInStock%}
-              <p class="ItemVariant">In Stock</p>
-            {%else%}
-              <p class="ItemVariant">Not In Stock</p>
-            {%endif%}
+              {%if item.variant.color%}
+                <p>Color: {{  item.variant.color.name }}</p>
+              {%endif%}
+
+              {%if item.product.IsInStock%}
+                <p class="ItemVariant">In Stock</p>
+              {%else%}
+                <p class="ItemVariant">Not In Stock</p>
+              {%endif%}
+            </div>
+            <form method="post" action="{% url 'remove_from_cart' item.id %}" id="removeFromCartForm">
+              {% csrf_token %}
+              <button type="submit" id="removeFromCartButton" class="ItemRemove">Remove</button>
+            </form>
           </div>
       </div>
       <div class="ItemPrice">
@@ -51,7 +57,11 @@
   {%endfor%}
 </div>
 {%else%}
-  <div>Your Cart Is Empty.</div>
+  <div class="EmptyCart">
+    <p>Your Cart Is Empty.</p>
+    <a href="{% url 'index' %}" id="shopNow" class="DefaultButtonMed">Shop Now!</a>
+  </div>
+
 {%endif%}
 {%endblock%}
   {% comment %} <h1 class="YourCart">Your Cart ({{ cart.total_items }} items):</h1>

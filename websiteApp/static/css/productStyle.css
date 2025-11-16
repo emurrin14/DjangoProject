@@ -95,6 +95,11 @@ img {
   font-size: 1.8rem;
   font-weight: 600;
 }
+.VariantContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
 .productVariantSizes {
   display: flex;
   gap: 1rem;
@@ -114,9 +119,15 @@ img {
   color: #fff;
   border-color: #111;
 }
+.VariantInputs {
+  display: flex;
+  flex-direction: row;
+}
 .add-to-cart-btn {
+  width: 100%;
   padding: 10px 20px;
-  background-color: #222;
+  margin-top: 1rem;
+  background-color: var(--textbefore);
   color: white;
   border: none;
   border-radius: 6px;
@@ -125,7 +136,7 @@ img {
 }
 
 .add-to-cart-btn:disabled {
-  background-color: #aaa;
+  background-color: #87a49c;
   cursor: not-allowed;
 }
 .productSizeButtons.active-size {

@@ -63,6 +63,9 @@ def product(request, slug):
     }
     return render(request, 'product.html', context)
 
+def tag_page(request):
+    
+    return render(request, "tag_page.html")
 
 
 def signup_view(request):
@@ -158,9 +161,9 @@ def subtract_from_cart(request, item_id):
     else:
         cart_item.delete()
     
-    return redirect("cart.html")
+    return redirect("cart")
 
 def remove_from_cart(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id)
     cart_item.delete()
-    return redirect("cart.html")
+    return redirect("cart")
