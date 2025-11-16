@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import CustomLoginForm, CustomUserCreationForm
 import json
 from django.views.decorators.http import require_POST
+from taggit.models import Tag
 
 
 # Create your views here.
@@ -63,9 +64,17 @@ def product(request, slug):
     }
     return render(request, 'product.html', context)
 
-def tag_page(request):
-    
-    return render(request, "tag_page.html")
+
+def products_by_tag(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+
+    products = Product.objects.filter(tags__slug__iexact=tag.slug).distinct()
+
+    context = {
+        'tag': tag,
+        'products': products,
+    }
+    return render(request, 'products_by_tag.html', context)
 
 
 def signup_view(request):
@@ -167,3 +176,6 @@ def remove_from_cart(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id)
     cart_item.delete()
     return redirect("cart")
+
+def ComingSoon(request):
+    return render(request, 'coming_soon.html')

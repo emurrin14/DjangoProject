@@ -24,12 +24,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('product/<slug:slug>/', views.product, name='product'),
+    path('tag/<slug:tag_slug>/', views.products_by_tag, name='products_by_tag'),
     path('cart/', views.cart, name='cart'),
     path('cart/add/<int:product_id>/', views.add_to_cart, name="add_to_cart"),
     path('cart/remove/<int:item_id>/', views.remove_from_cart, name="remove_from_cart"),
     path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('coming_soon/', views.ComingSoon, name='coming_soon'),
 ]
 
 if settings.DEBUG:

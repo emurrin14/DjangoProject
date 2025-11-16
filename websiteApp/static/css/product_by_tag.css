@@ -1,0 +1,19 @@
+:root {
+  --main: #ffffff;
+  --bg: #222222;
+  --card: #ffffff;
+  --hover: #72a7db;
+  --accent: ;
+  --text: #013328;
+  --textbefore: #005c48;
+  --textopp: #2f181b;
+  --gap: 1rem;
+  --max-width: 600px;
+  --border: 1px solid #ccc;
+}
+.GridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  margin: 2rem auto;
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Tags{%endblock%}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/product_by_tag.css' %}" />
+<style>
+  .headerFilterContainer a:nth-child(1) {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+{%block content%}
+  {%include 'components/headerFilter.html'%}
+<h1> {{tag.name}} </h1>
+<div class="GridContainer">
+  {% if products %}
+    {%for product in products%}
+      <div>bruh</div>
+    {%endfor%}
+
+  {%else%}
+  <h1>No {{tag.name}} Products</h1>
+  {% endif %}
+</div>
+
+{%endblock%}
+{%block scripts%}{%endblock%}

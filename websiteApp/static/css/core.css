@@ -441,3 +441,26 @@ html {
 .DefaultButtonMed:hover {
   background-color: var(--text);
 }
+.headerFilterContainer {
+  display: flex;
+  justify-content: flex-start;
+  position: sticky;
+  align-items: center;
+  z-index: 3;
+  height: 30px;
+  background-color: var(--main);
+  top: 0px;
+  padding: 0;
+  border-bottom: #ccc 0.1rem solid;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1.5rem 0 1.5rem;
+  gap: 1.2rem;
+}
+.headerFilterContainer a {
+  color: var(--text);
+  text-decoration: none;
+}
+.headerFilterContainer a:hover {
+  text-decoration: underline;
+}
