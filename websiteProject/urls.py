@@ -31,6 +31,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('verify-email/<str:token>/', views.verify_email, name='verify_email'),
     path('coming_soon/', views.ComingSoon, name='coming_soon'),
 ]
 

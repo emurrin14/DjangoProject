@@ -31,6 +31,13 @@
         {{ form.non_field_errors.0 }}
       </div>
       {% endif %}
+      {% if messages %}
+      <div id="errorDiv">
+        {% for message in messages %}
+        <div style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
       <button form="LoginForm" type="submit">Login</button>
     <div class="SignUpLink">
       <p>Don't have an account?</p>
